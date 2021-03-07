@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<ioc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="3e4c852a-6164-4c15-9105-7079c9016aa5" last-modified="2021-03-07T06:43:17" xmlns="http://schemas.mandiant.com/2010/ioc">
+  <short_description>Cerber_Ransomware_IOCs</short_description>
+  <description>This is the IOCs for Cerber Ransomware </description>
+  <authored_by>Practice</authored_by>
+  <authored_date>2021-03-07T06:32:56</authored_date>
+  <links />
+  <definition>
+    <Indicator operator="OR" id="824fa2ef-4b28-4da4-9a42-c21c7149d9eb">
+      <IndicatorItem id="102180e4-d563-4620-91f8-51c30d7d9fdd" condition="is">
+        <Context document="FileItem" search="FileItem/Md5sum" type="mir" />
+        <Content type="md5">8b6bc16fd137c09a08b02bbe1bb7d670</Content>
+      </IndicatorItem>
+      <IndicatorItem id="2cc657dc-629b-41fa-b1b6-cc248a6a2e07" condition="contains">
+        <Context document="FileItem" search="FileItem/FileExtension" type="mir" />
+        <Content type="string">.exe</Content>
+      </IndicatorItem>
+      <IndicatorItem id="df474f49-655a-450d-b8cd-e599b1df2efe" condition="contains">
+        <Context document="FileItem" search="FileItem/FileName" type="mir" />
+        <Content type="string">cerber.exe</Content>
+      </IndicatorItem>
+      <Indicator operator="AND" id="e2aeea6b-96d1-49ee-a086-f183c9dab3cd">
+        <Indicator operator="OR" id="ab16295d-eb1f-4d7a-a855-2583259b2cf6">
+          <IndicatorItem id="767f2b1b-6913-4154-bc81-9c3b29c8a04e" condition="is">
+            <Context document="FileItem" search="FileItem/SizeInBytes" type="mir" />
+            <Content type="int">619008</Content>
+          </IndicatorItem>
+          <Indicator operator="OR" id="1a7d3208-1cef-4e84-a2ee-49f375bc298b">
+            <IndicatorItem id="d5987609-e02b-4116-bb29-1a349c6fe6fd" condition="contains">
+              <Context document="FileItem" search="FileItem/StringList/string" type="mir" />
+              <Content type="string">11111kicu4p3050f55f298b5211cf2bb82200aa00bdce0bf</Content>
+            </IndicatorItem>
+          </Indicator>
+        </Indicator>
+      </Indicator>
+    </Indicator>
+  </definition>
+</ioc>
